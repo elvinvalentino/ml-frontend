@@ -1,6 +1,7 @@
 import { PredictionItem } from '../types';
 
 interface PredictionDataDetail {
+  quantity: number;
   dayOfWeek: Record<string | number, number>;
   month: Record<string | number, number>;
   isHoliday: Record<string | number, number>;
@@ -12,6 +13,7 @@ export const decomposePrediction = (predictionItems: PredictionItem[]) => {
   return predictionItems.reduce((res: any, predictionItem) => {
     if (!('all' in res))
       res['all'] = {
+        quantity: 0,
         dayOfWeek: {},
         isHoliday: {},
         isWeekend: {},
@@ -21,6 +23,7 @@ export const decomposePrediction = (predictionItems: PredictionItem[]) => {
 
     if (!(predictionItem.Nama in res))
       res[predictionItem.Nama] = {
+        quantity: 0,
         dayOfWeek: {},
         isHoliday: {},
         isWeekend: {},
@@ -28,6 +31,7 @@ export const decomposePrediction = (predictionItems: PredictionItem[]) => {
         date: {},
       } as Partial<PredictionDataDetail>;
 
+    res['all'].quantity += Math.max(0, predictionItem.Quantity);
     res['all'].dayOfWeek[predictionItem.Hari] =
       (res['all'].dayOfWeek[predictionItem.Hari] || 0) +
       Math.max(0, predictionItem.Quantity);
@@ -44,6 +48,7 @@ export const decomposePrediction = (predictionItems: PredictionItem[]) => {
       (res['all'].date[predictionItem.Tanggal] || 0) +
       Math.max(0, predictionItem.Quantity);
 
+    res[predictionItem.Nama].quantity += Math.max(0, predictionItem.Quantity);
     res[predictionItem.Nama].dayOfWeek[predictionItem.Hari] =
       (res[predictionItem.Nama].dayOfWeek[predictionItem.Hari] || 0) +
       Math.max(0, predictionItem.Quantity);
