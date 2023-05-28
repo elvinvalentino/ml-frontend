@@ -29,7 +29,7 @@ function App() {
   const onPredict = async () => {
     setIsLoading(true);
     const { data } = await axios.post<{ data: PredictionItem[] }>(
-      'http://127.0.0.1:5000/predict',
+      'https://elvinvalentino.pythonanywhere.com/predict',
       {
         startDate: rangePickerValue[0].format('YYYY-MM-DD'),
         endDate: rangePickerValue[1].format('YYYY-MM-DD'),
@@ -55,8 +55,13 @@ function App() {
                   }}
                   className="w-100 my-2 me-2"
                 />
-                <Button variant="primary" size="sm" onClick={onPredict}>
-                  Predict
+                <Button
+                  disabled={isLoading}
+                  variant="primary"
+                  size="sm"
+                  onClick={onPredict}
+                >
+                  {isLoading ? 'Predicting...' : 'Predict'}
                 </Button>
               </div>
             </Card.Body>
