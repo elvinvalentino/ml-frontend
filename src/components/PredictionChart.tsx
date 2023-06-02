@@ -40,7 +40,7 @@ const PredictionChart: React.FC<IProps> = ({
         <Col xs={12} sm={6}>
           <Chart
             type="area"
-            title="Sales vs Date"
+            title="Stock vs Date"
             subTitle="Stock Movements"
             data={Object.values(predictions[selectedItem].date)}
             labels={Object.keys(predictions[selectedItem].date)}
@@ -49,7 +49,7 @@ const PredictionChart: React.FC<IProps> = ({
         <Col xs={12} sm={6}>
           <Chart
             type="area"
-            title="Sales vs Month"
+            title="Stock vs Month"
             subTitle="Stock Movements"
             data={Object.values(predictions[selectedItem].month)}
             labels={Object.keys(predictions[selectedItem].month).map(v =>
@@ -62,7 +62,7 @@ const PredictionChart: React.FC<IProps> = ({
         <Col xs={12} sm={4}>
           <Chart
             type="bar"
-            title="Sales vs Holiday"
+            title="Stock vs Day of Week"
             subTitle="Stock Comparisons"
             data={Object.values(predictions[selectedItem].dayOfWeek)}
             labels={Object.keys(predictions[selectedItem].dayOfWeek).map(v =>
@@ -73,7 +73,7 @@ const PredictionChart: React.FC<IProps> = ({
         <Col xs={12} sm={4}>
           <Chart
             type="bar"
-            title="Sales vs Holiday"
+            title="Stock vs Holiday"
             subTitle="Stock Comparisons"
             data={Object.values(predictions[selectedItem].isHoliday)}
             labels={Object.keys(predictions[selectedItem].isHoliday).map(v =>
@@ -84,7 +84,7 @@ const PredictionChart: React.FC<IProps> = ({
         <Col xs={12} sm={4}>
           <Chart
             type="bar"
-            title="Sales vs Weekend"
+            title="Stock vs Weekend"
             subTitle="Stock Comparisons"
             data={Object.values(predictions[selectedItem].isWeekend)}
             labels={Object.keys(predictions[selectedItem].isWeekend).map(v =>
